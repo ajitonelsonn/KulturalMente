@@ -4079,7 +4079,7 @@ export default function ResultsPage() {
                       </motion.div>
                       <div>
                         <div className="text-white/90 font-medium">
-                          Enhanced with OpenAI GPT-4
+                          Enhanced with OpenAI GPT-4o
                         </div>
                         <div className="text-white/60 text-xs">
                           Advanced narrative generation
