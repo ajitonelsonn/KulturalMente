@@ -13,7 +13,33 @@ export interface CulturalProfile {
   patterns: string[];
   diversityScore?: number;
   culturalDepth?: number;
-  qlooInsights?: any;
+  qlooInsights?: {
+    entityMapping?: Record<string, QlooEntity[]>;
+    totalEntitiesFound?: number;
+    domainsWithEntities?: string[];
+    categoryMappingUsed?: Record<string, string>;
+    matchRate?: number;
+    error?: string;
+    [key: string]: unknown;
+  };
+}
+
+interface QlooEntity {
+  id: string;
+  name: string;
+  category: string;
+  score?: number;
+  metadata?: Record<string, unknown>;
+  popularity?: number;
+  types?: string[];
+  entity_id?: string;
+  properties?: Record<string, unknown>;
+  location?: {
+    country?: string;
+    [key: string]: unknown;
+  };
+  tags?: string[];
+  disambiguation?: string;
 }
 
 export interface CulturalNarrative {
@@ -68,9 +94,6 @@ class ServerOpenAIService {
       const openai = this.getOpenAIClient();
 
       const totalPrefs = Object.values(preferences).flat().length;
-      const domains = Object.keys(preferences).filter(
-        (key) => preferences[key].length > 0
-      );
 
       // Extract detailed Qloo data for better narrative generation
       const qlooInsights = culturalProfile.qlooInsights || {};
@@ -503,7 +526,9 @@ Return as JSON: {"challenges": ["specific challenge 1", "specific challenge 2", 
   }
 
   // Helper methods
-  private buildEntityContext(entityMapping: Record<string, any[]>): string {
+  private buildEntityContext(
+    entityMapping: Record<string, QlooEntity[]>
+  ): string {
     if (!entityMapping || Object.keys(entityMapping).length === 0) {
       return "No detailed entity mapping available from Qloo analysis";
     }
@@ -620,13 +645,10 @@ Return as JSON: {"challenges": ["specific challenge 1", "specific challenge 2", 
         qlooInsights.entityMapping
       )) {
         if (entities && Array.isArray(entities) && entities.length > 0) {
-          const popularities = entities.map((e: any) => e.popularity || 0);
+          const popularities = entities.map((e) => e.popularity || 0);
           const avgPopularity =
-            popularities.reduce((a: number, b: number) => a + b, 0) /
-            popularities.length;
-          const uniqueTypes = new Set(
-            entities.flatMap((e: any) => e.types || [])
-          );
+            popularities.reduce((a, b) => a + b, 0) / popularities.length;
+          const uniqueTypes = new Set(entities.flatMap((e) => e.types || []));
           context.push(
             `${domain}: ${
               entities.length
