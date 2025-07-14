@@ -2759,22 +2759,6 @@ export default function ResultsPage() {
                               >
                                 <Bookmark className="w-4 h-4" />
                               </motion.button>
-                              <motion.button
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.9 }}
-                                className="p-3 rounded-lg bg-white/10 text-white/60 hover:text-white transition-colors border border-white/20 hover:border-white/40"
-                                title="Learn more"
-                              >
-                                <ExternalLink className="w-4 h-4" />
-                              </motion.button>
-                              <motion.button
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.9 }}
-                                className="p-3 rounded-lg bg-white/10 text-white/60 hover:text-white transition-colors border border-white/20 hover:border-white/40"
-                                title="Share discovery"
-                              >
-                                <Share2 className="w-4 h-4" />
-                              </motion.button>
                             </div>
                           </div>
 
