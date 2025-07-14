@@ -334,7 +334,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Enhanced Example Section - Based on Real Result */}
+      {/* Enhanced Example Section */}
       <section className="relative z-10 py-32 bg-gradient-to-r from-purple-900/50 to-blue-900/50 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -369,17 +369,17 @@ export default function HomePage() {
                 <div className="bg-gradient-to-r from-yellow-400 to-orange-400 rounded-2xl p-4 mr-6 relative">
                   <Sparkles className="w-12 h-12 text-white" />
                   <div className="absolute -top-2 -right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-                    62
+                    63
                   </div>
                 </div>
                 <div className="text-left">
                   <h4 className="text-4xl font-bold text-white mb-2">
-                    "Harmonious Cultural Explorer"
+                    "Eclectic Global Voyager"
                   </h4>
                   <div className="flex items-center text-blue-200">
                     <Star className="w-5 h-5 mr-2" />
                     <span className="text-lg">
-                      Cultural Diversity Score: 62/100
+                      Cultural Diversity Score: 63/100
                     </span>
                   </div>
                 </div>
@@ -391,9 +391,9 @@ export default function HomePage() {
                 transition={{ delay: 0.5 }}
                 className="text-blue-100 text-xl leading-relaxed font-light max-w-4xl mx-auto mb-8"
               >
-                Their core cultural essence is a harmonious blend of nostalgic
-                sounds, diverse culinary experiences, and a thirst for knowledge
-                across digital and physical landscapes.
+                An eclectic mix of global influences and narratives, their core
+                cultural essence lies in the seamless integration of diverse
+                experiences into a cohesive, vibrant life journey.
               </motion.p>
 
               {/* Analysis Stats */}
@@ -413,7 +413,7 @@ export default function HomePage() {
                 </div>
                 <div className="flex items-center">
                   <BarChart3 className="w-4 h-4 mr-2" />
-                  <span className="text-sm">62% confidence</span>
+                  <span className="text-sm">63% confidence</span>
                 </div>
               </motion.div>
             </div>
@@ -432,17 +432,20 @@ export default function HomePage() {
                   Your Cultural Story
                 </h5>
                 <p className="text-blue-100 text-sm leading-relaxed mb-4">
-                  In a world where music reflects the soul, they find comfort in
-                  the ethereal sounds of Pink Floyd and soulful melodies of Mike
-                  Ardila. Their taste buds embark on culinary adventures,
-                  savoring vibrant flavors of Martabak and Terang Bulan
-                  alongside delicate elegance of sushi and Indonesian street
-                  food.
+                  In a world constantly pulsating to the rhythms of change,
+                  there exists an individual for whom the cultural tapestry of
+                  life is woven with vibrant threads of global experiences.
+                  Rooted in the beats of Central Cee and Alan Walker, alongside
+                  the rhythmic pulse of Rihanna, they find solace and
+                  inspiration in the intricate musical landscape that spans
+                  continents.
                 </p>
                 <p className="text-blue-100 text-sm leading-relaxed">
-                  A traveler at heart, they find inspiration in iconic
-                  destinations that blend history with modernity, constantly
-                  seeking to understand and innovate through AI and technology.
+                  Their cinematic adventures are beautifully shaped by
+                  tear-jerking heroes in "Spider-Man: Far From Home" and the
+                  timeless tale of succession from "The Lion King II: Simba's
+                  Pride." These narratives mirror their own journey of
+                  self-discovery and growth.
                 </p>
               </motion.div>
 
@@ -459,11 +462,11 @@ export default function HomePage() {
                 </h5>
                 <div className="space-y-3">
                   {[
-                    "Musical tastes reflect a blend of global influences and regional pop",
-                    "Movie preferences indicate adventure and humor appreciation",
-                    "Culinary interests highlight diverse flavor exploration",
-                    "Travel choices reveal iconic landmark appreciation",
-                    "AI interest shows forward-thinking technological mindset",
+                    "Strong thematic connections between media and music preferences indicate a pursuit of rich, narrative-driven experiences",
+                    "Their varied travel interests suggest an inclination towards both cultural immersion and exploration of uncharted territories",
+                    "Musical tastes reflect a broad appreciation for modern, global influences, indicating an openness to diverse soundscapes",
+                    "Food choices reveal a blend of comfort in tradition and excitement in discovering new culinary experiences",
+                    "Literary preferences for AI and non-fiction indicate a keen interest in technological advancement and factual storytelling",
                   ].map((insight, index) => (
                     <motion.div
                       key={index}
@@ -494,10 +497,10 @@ export default function HomePage() {
                   </h5>
                   <div className="space-y-2">
                     {[
-                      "Strong Cultural Database Alignment",
+                      "Comprehensive Cultural Database Recognition",
                       "Multi-Domain Cultural Coherence",
+                      "Deep Domain Specialization",
                       "Mainstream Cultural Recognition",
-                      "Globally Diverse Cultural Interests",
                     ].map((theme, index) => (
                       <motion.div
                         key={index}
@@ -522,7 +525,7 @@ export default function HomePage() {
                     {[
                       { domains: "music ↔ movies", strength: 95 },
                       { domains: "music ↔ food", strength: 95 },
-                      { domains: "music ↔ travel", strength: 90 },
+                      { domains: "music ↔ books", strength: 95 },
                     ].map((conn, index) => (
                       <motion.div
                         key={index}
@@ -565,15 +568,19 @@ export default function HomePage() {
               className="grid grid-cols-3 gap-6 mt-8 pt-8 border-t border-white/10"
             >
               <div className="text-center">
-                <div className="text-2xl font-bold text-white mb-1">12</div>
-                <div className="text-sm text-white/60">Cultural Markers</div>
+                <div className="text-2xl font-bold text-white mb-1">13</div>
+                <div className="text-sm text-white/60">
+                  Cultural Preferences
+                </div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-white mb-1">10</div>
-                <div className="text-sm text-white/60">Deep Connections</div>
+                <div className="text-sm text-white/60">
+                  Cross-Domain Connections
+                </div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-white mb-1">62%</div>
+                <div className="text-2xl font-bold text-white mb-1">63%</div>
                 <div className="text-sm text-white/60">Diversity Score</div>
               </div>
             </motion.div>
