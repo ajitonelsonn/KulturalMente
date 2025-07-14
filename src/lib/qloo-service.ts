@@ -23,44 +23,20 @@ const QLOO_CATEGORY_MAP: Record<string, string> = {
   books: "urn:entity:book", // ⚠️ Sometimes low signal
 };
 
-// Fallback types for when primary type has low signal strength
-const QLOO_FALLBACK_TYPES: Record<string, string[]> = {
-  music: ["urn:entity:artist", "urn:entity:album"],
-  movies: ["urn:entity:movie", "urn:entity:tv_show", "urn:entity:director"],
-  food: ["urn:entity:place", "urn:entity:locality", "urn:entity:brand"],
-  travel: ["urn:entity:destination", "urn:entity:place", "urn:entity:locality"],
-  books: ["urn:entity:book", "urn:entity:author", "urn:entity:movie"], // Try book adaptations
-};
-
-// Reverse mapping for response processing
-const QLOO_REVERSE_MAP: Record<string, string> = {
-  "urn:entity:artist": "music",
-  "urn:entity:album": "music",
-  "urn:entity:movie": "movies",
-  "urn:entity:tv_show": "movies",
-  "urn:entity:director": "movies",
-  "urn:entity:actor": "movies",
-  "urn:entity:place": "food",
-  "urn:entity:locality": "travel",
-  "urn:entity:destination": "travel",
-  "urn:entity:book": "books",
-  "urn:entity:author": "books",
-  "urn:entity:brand": "food",
-  "urn:entity:podcast": "books",
-  "urn:entity:videogame": "movies",
-};
-
 export interface QlooEntity {
   id: string;
   name: string;
   category: string;
   score?: number;
-  metadata?: any;
+  metadata?: Record<string, unknown>;
   popularity?: number;
   types?: string[];
   entity_id?: string;
-  properties?: any;
-  location?: any;
+  properties?: Record<string, unknown>;
+  location?: {
+    country?: string;
+    [key: string]: unknown;
+  };
   tags?: string[];
   disambiguation?: string;
 }
@@ -74,7 +50,10 @@ export interface QlooRecommendation {
   confidence?: number;
   popularity?: number;
   types?: string[];
-  location?: any;
+  location?: {
+    country?: string;
+    [key: string]: unknown;
+  };
 }
 
 export interface CulturalProfile {
@@ -89,14 +68,22 @@ export interface CulturalProfile {
   patterns: string[];
   diversityScore?: number;
   culturalDepth?: number;
-  qlooInsights?: any;
+  qlooInsights?: {
+    entityMapping?: Record<string, QlooEntity[]>;
+    totalEntitiesFound?: number;
+    domainsWithEntities?: string[];
+    categoryMappingUsed?: Record<string, string>;
+    matchRate?: number;
+    error?: string;
+    [key: string]: unknown;
+  };
 }
 
 class QlooService {
   private async makeQlooRequest(
     endpoint: string,
     params?: Record<string, string>
-  ): Promise<any> {
+  ): Promise<unknown> {
     const { QLOO_API_URL, QLOO_API_KEY } = getQlooCredentials();
 
     const url = new URL(endpoint, QLOO_API_URL);
@@ -300,7 +287,7 @@ class QlooService {
       const connections = [];
       const themes = [];
       const patterns = [];
-      const qlooInsights: any = {};
+      const qlooInsights: CulturalProfile["qlooInsights"] = {};
 
       const domains = Object.keys(preferences).filter(
         (key) => preferences[key].length > 0
@@ -411,7 +398,7 @@ class QlooService {
             name: e.name,
             types: e.types,
             popularity: e.popularity,
-          })),
+          })) as QlooEntity[],
         ])
       );
       qlooInsights.totalEntitiesFound =
@@ -541,10 +528,10 @@ class QlooService {
           entities2WithLocation.length > 0
         ) {
           const countries1 = new Set(
-            entities1WithLocation.map((e) => e.location.country)
+            entities1WithLocation.map((e) => e.location!.country!)
           );
           const countries2 = new Set(
-            entities2WithLocation.map((e) => e.location.country)
+            entities2WithLocation.map((e) => e.location!.country!)
           );
           const intersection = new Set(
             [...countries1].filter((x) => countries2.has(x))
@@ -685,7 +672,7 @@ class QlooService {
     const entitiesWithLocation = allEntities.filter((e) => e.location?.country);
     if (entitiesWithLocation.length > 0) {
       const uniqueCountries = new Set(
-        entitiesWithLocation.map((e) => e.location.country)
+        entitiesWithLocation.map((e) => e.location!.country!)
       );
       if (uniqueCountries.size > 3) {
         themes.push("Globally Diverse Cultural Interests");
@@ -800,7 +787,7 @@ class QlooService {
     );
     if (entitiesWithLocation.length > 0) {
       const uniqueCountries = new Set(
-        entitiesWithLocation.map((e) => e.location.country)
+        entitiesWithLocation.map((e) => e.location!.country!)
       );
       if (uniqueCountries.size > 2) {
         patterns.push(
@@ -861,7 +848,7 @@ class QlooService {
     // Geographic diversity score (0-10 points)
     const entitiesWithLocation = allEntities.filter((e) => e.location?.country);
     const uniqueCountries = new Set(
-      entitiesWithLocation.map((e) => e.location.country)
+      entitiesWithLocation.map((e) => e.location!.country!)
     );
     const geoScore = Math.min(10, uniqueCountries.size * 2.5);
 
@@ -987,7 +974,7 @@ class QlooService {
   async testQlooConnection(): Promise<{
     success: boolean;
     message: string;
-    data?: any;
+    data?: unknown;
   }> {
     try {
       console.log(`🧪 Testing Qloo API connection...`);
@@ -1024,7 +1011,7 @@ class QlooService {
   }
 
   // Method to get detailed analysis stats
-  getAnalysisStats(culturalProfile: CulturalProfile): any {
+  getAnalysisStats(culturalProfile: CulturalProfile): Record<string, unknown> {
     return {
       totalEntitiesFound: culturalProfile.qlooInsights?.totalEntitiesFound || 0,
       matchRate: culturalProfile.qlooInsights?.matchRate || 0,
@@ -1138,11 +1125,10 @@ class QlooService {
     console.log(`🎯 Getting cultural recommendations for profile...`);
 
     // Get all entity IDs from the cultural profile
-    const allEntityIds = Object.values(
-      culturalProfile.qlooInsights?.entityMapping || {}
-    )
+    const entityMapping = culturalProfile.qlooInsights?.entityMapping || {};
+    const allEntityIds = Object.values(entityMapping)
       .flat()
-      .map((entity: any) => entity.id);
+      .map((entity: QlooEntity) => entity.id);
 
     if (allEntityIds.length === 0) {
       console.warn("⚠️ No entity IDs found in cultural profile");
