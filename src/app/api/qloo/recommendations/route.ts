@@ -1,6 +1,4 @@
-// ============================================================================
-// src/app/api/qloo/recommendations/route.ts - UPDATED
-// ============================================================================
+// src/app/api/qloo/recommendations/route.ts
 
 import { NextRequest, NextResponse } from "next/server";
 
