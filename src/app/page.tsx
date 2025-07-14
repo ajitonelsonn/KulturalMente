@@ -17,6 +17,9 @@ import {
   Music,
   Film,
   Coffee,
+  Clock,
+  Target,
+  BarChart3,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -331,7 +334,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Example Section */}
+      {/* Enhanced Example Section - Based on Real Result */}
       <section className="relative z-10 py-32 bg-gradient-to-r from-purple-900/50 to-blue-900/50 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -341,11 +344,11 @@ export default function HomePage() {
             className="text-center mb-16"
           >
             <h3 className="text-5xl font-bold text-white mb-8">
-              Example Cultural DNA
+              Live Cultural DNA Example
             </h3>
             <p className="text-2xl text-blue-100 max-w-3xl mx-auto font-light">
               See how we transform scattered preferences into meaningful
-              cultural insights.
+              cultural insights and visualizations.
             </p>
           </motion.div>
 
@@ -353,73 +356,227 @@ export default function HomePage() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
-            className="bg-white/10 backdrop-blur-sm rounded-3xl p-12 border border-white/20 max-w-5xl mx-auto"
+            className="bg-white/10 backdrop-blur-sm rounded-3xl p-12 border border-white/20 max-w-6xl mx-auto"
           >
-            <div className="mb-10">
-              <h4 className="text-4xl font-bold text-white mb-6 flex items-center">
-                <Sparkles className="w-10 h-10 text-yellow-400 mr-4" />
-                "The Intimate Grandeur Seeker"
-              </h4>
-              <p className="text-blue-100 text-xl leading-relaxed font-light">
-                Your love of Billie Eilish, The Grand Budapest Hotel, and
-                Ethiopian food reveals a fascinating cultural pattern: you're
-                drawn to experiences that feel both deeply personal and
-                cinematically grand. You seek beauty in unexpected places and
-                value authentic expression over mainstream appeal.
-              </p>
+            {/* Header with Icon and Title */}
+            <div className="text-center mb-12">
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                transition={{ delay: 0.3, type: "spring" }}
+                className="flex items-center justify-center mb-6"
+              >
+                <div className="bg-gradient-to-r from-yellow-400 to-orange-400 rounded-2xl p-4 mr-6 relative">
+                  <Sparkles className="w-12 h-12 text-white" />
+                  <div className="absolute -top-2 -right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                    62
+                  </div>
+                </div>
+                <div className="text-left">
+                  <h4 className="text-4xl font-bold text-white mb-2">
+                    "Harmonious Cultural Explorer"
+                  </h4>
+                  <div className="flex items-center text-blue-200">
+                    <Star className="w-5 h-5 mr-2" />
+                    <span className="text-lg">
+                      Cultural Diversity Score: 62/100
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="text-blue-100 text-xl leading-relaxed font-light max-w-4xl mx-auto mb-8"
+              >
+                Their core cultural essence is a harmonious blend of nostalgic
+                sounds, diverse culinary experiences, and a thirst for knowledge
+                across digital and physical landscapes.
+              </motion.p>
+
+              {/* Analysis Stats */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="flex justify-center items-center space-x-8 mb-8 text-white/80"
+              >
+                <div className="flex items-center">
+                  <Clock className="w-4 h-4 mr-2" />
+                  <span className="text-sm">72s analysis</span>
+                </div>
+                <div className="flex items-center">
+                  <Target className="w-4 h-4 mr-2" />
+                  <span className="text-sm">10 connections</span>
+                </div>
+                <div className="flex items-center">
+                  <BarChart3 className="w-4 h-4 mr-2" />
+                  <span className="text-sm">62% confidence</span>
+                </div>
+              </motion.div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+            {/* Three Column Layout */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {/* Cultural Story */}
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4 }}
+                className="bg-white/5 rounded-2xl p-6 border border-white/10"
+              >
                 <h5 className="font-bold text-white mb-4 text-xl flex items-center">
-                  <Star className="w-5 h-5 text-yellow-400 mr-2" />
-                  Your Cultural Themes
+                  <Heart className="w-5 h-5 text-red-400 mr-2" />
+                  Your Cultural Story
                 </h5>
-                <ul className="space-y-3">
-                  {[
-                    "Intimate yet cinematic experiences",
-                    "Aesthetic sophistication",
-                    "Emotional authenticity",
-                  ].map((item, index) => (
-                    <motion.li
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="flex items-center text-blue-100"
-                    >
-                      <div className="w-2 h-2 rounded-full bg-gradient-to-r from-yellow-400 to-orange-400 mr-3" />
-                      {item}
-                    </motion.li>
-                  ))}
-                </ul>
-              </div>
+                <p className="text-blue-100 text-sm leading-relaxed mb-4">
+                  In a world where music reflects the soul, they find comfort in
+                  the ethereal sounds of Pink Floyd and soulful melodies of Mike
+                  Ardila. Their taste buds embark on culinary adventures,
+                  savoring vibrant flavors of Martabak and Terang Bulan
+                  alongside delicate elegance of sushi and Indonesian street
+                  food.
+                </p>
+                <p className="text-blue-100 text-sm leading-relaxed">
+                  A traveler at heart, they find inspiration in iconic
+                  destinations that blend history with modernity, constantly
+                  seeking to understand and innovate through AI and technology.
+                </p>
+              </motion.div>
 
-              <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+              {/* Key Insights */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className="bg-white/5 rounded-2xl p-6 border border-white/10"
+              >
                 <h5 className="font-bold text-white mb-4 text-xl flex items-center">
-                  <Compass className="w-5 h-5 text-blue-400 mr-2" />
-                  Recommended Discoveries
+                  <Zap className="w-5 h-5 text-yellow-400 mr-2" />
+                  Key Insights
                 </h5>
-                <ul className="space-y-3">
+                <div className="space-y-3">
                   {[
-                    "A boutique hotel in Prague",
-                    "Japanese whisky tasting",
-                    "Underground jazz in Tokyo",
-                  ].map((item, index) => (
-                    <motion.li
+                    "Musical tastes reflect a blend of global influences and regional pop",
+                    "Movie preferences indicate adventure and humor appreciation",
+                    "Culinary interests highlight diverse flavor exploration",
+                    "Travel choices reveal iconic landmark appreciation",
+                    "AI interest shows forward-thinking technological mindset",
+                  ].map((insight, index) => (
+                    <motion.div
                       key={index}
-                      initial={{ opacity: 0, x: -20 }}
+                      initial={{ opacity: 0, x: 20 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="flex items-center text-blue-100"
+                      transition={{ delay: 0.6 + index * 0.1 }}
+                      className="flex items-start text-blue-100 text-sm"
                     >
-                      <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 mr-3" />
-                      {item}
-                    </motion.li>
+                      <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-yellow-400 to-orange-400 mr-3 mt-2 flex-shrink-0" />
+                      {insight}
+                    </motion.div>
                   ))}
-                </ul>
-              </div>
+                </div>
+              </motion.div>
+
+              {/* Cultural Themes & Connections */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.6 }}
+                className="space-y-6"
+              >
+                {/* Themes */}
+                <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+                  <h5 className="font-bold text-white mb-4 text-lg flex items-center">
+                    <Palette className="w-5 h-5 text-pink-400 mr-2" />
+                    Cultural Themes
+                  </h5>
+                  <div className="space-y-2">
+                    {[
+                      "Strong Cultural Database Alignment",
+                      "Multi-Domain Cultural Coherence",
+                      "Mainstream Cultural Recognition",
+                      "Globally Diverse Cultural Interests",
+                    ].map((theme, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.7 + index * 0.1 }}
+                        className="text-xs text-blue-100 bg-white/5 px-3 py-2 rounded-lg border border-white/10"
+                      >
+                        {theme}
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Connections */}
+                <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+                  <h5 className="font-bold text-white mb-4 text-lg flex items-center">
+                    <Globe className="w-5 h-5 text-blue-400 mr-2" />
+                    Top Connections
+                  </h5>
+                  <div className="space-y-3">
+                    {[
+                      { domains: "music ↔ movies", strength: 95 },
+                      { domains: "music ↔ food", strength: 95 },
+                      { domains: "music ↔ travel", strength: 90 },
+                    ].map((conn, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, x: 20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.8 + index * 0.1 }}
+                        className="flex items-center justify-between"
+                      >
+                        <span className="text-xs text-blue-100">
+                          {conn.domains}
+                        </span>
+                        <div className="flex items-center">
+                          <div className="w-12 bg-white/20 rounded-full h-1.5 mr-2">
+                            <motion.div
+                              initial={{ width: 0 }}
+                              whileInView={{ width: `${conn.strength}%` }}
+                              transition={{
+                                delay: 0.9 + index * 0.1,
+                                duration: 0.8,
+                              }}
+                              className="bg-gradient-to-r from-purple-400 to-blue-400 h-1.5 rounded-full"
+                            />
+                          </div>
+                          <span className="text-xs text-white/80 font-medium">
+                            {conn.strength}%
+                          </span>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
             </div>
+
+            {/* Bottom Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+              className="grid grid-cols-3 gap-6 mt-8 pt-8 border-t border-white/10"
+            >
+              <div className="text-center">
+                <div className="text-2xl font-bold text-white mb-1">12</div>
+                <div className="text-sm text-white/60">Cultural Markers</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-white mb-1">10</div>
+                <div className="text-sm text-white/60">Deep Connections</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-white mb-1">62%</div>
+                <div className="text-sm text-white/60">Diversity Score</div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
