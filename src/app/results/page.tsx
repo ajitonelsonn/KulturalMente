@@ -3537,36 +3537,6 @@ export default function ResultsPage() {
                         </div>
                       )}
                     </div>
-
-                    {/* Challenge Progress Tracker */}
-                    {growthChallenges.length > 0 && (
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.8 }}
-                        className="mt-6 p-4 bg-green-500/10 rounded-xl border border-green-400/20"
-                      >
-                        <div className="flex items-center justify-between mb-3">
-                          <h4 className="text-green-300 font-medium">
-                            Challenge Progress
-                          </h4>
-                          <span className="text-sm text-green-400">
-                            0/{growthChallenges.length} completed
-                          </span>
-                        </div>
-                        <div className="w-full bg-white/20 rounded-full h-2">
-                          <motion.div
-                            initial={{ width: 0 }}
-                            animate={{ width: "0%" }}
-                            className="bg-gradient-to-r from-green-400 to-blue-400 h-2 rounded-full"
-                          />
-                        </div>
-                        <p className="text-green-100 text-sm mt-2">
-                          Start your first challenge to begin tracking your
-                          cultural growth journey.
-                        </p>
-                      </motion.div>
-                    )}
                   </motion.div>
 
                   {/* Enhanced CTA Section */}
