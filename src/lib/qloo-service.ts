@@ -534,7 +534,7 @@ class QlooService {
             entities2WithLocation.map((e) => e.location!.country!)
           );
           const intersection = new Set(
-            [...countries1].filter((x) => countries2.has(x))
+            Array.from(countries1).filter((x) => countries2.has(x))
           );
           locationSimilarity =
             intersection.size / Math.max(countries1.size, countries2.size);
@@ -545,7 +545,9 @@ class QlooService {
         const tags1 = new Set(entities1.flatMap((e) => e.tags || []));
         const tags2 = new Set(entities2.flatMap((e) => e.tags || []));
         if (tags1.size > 0 && tags2.size > 0) {
-          const intersection = new Set([...tags1].filter((x) => tags2.has(x)));
+          const intersection = new Set(
+            Array.from(tags1).filter((x) => tags2.has(x))
+          );
           tagSimilarity = intersection.size / Math.max(tags1.size, tags2.size);
         }
 
@@ -1269,9 +1271,15 @@ class QlooService {
     // Calculate theme similarity
     const themes1 = new Set(profile1.themes);
     const themes2 = new Set(profile2.themes);
-    const sharedThemes = [...themes1].filter((theme) => themes2.has(theme));
-    const uniqueThemes1 = [...themes1].filter((theme) => !themes2.has(theme));
-    const uniqueThemes2 = [...themes2].filter((theme) => !themes1.has(theme));
+    const sharedThemes = Array.from(themes1).filter((theme) =>
+      themes2.has(theme)
+    );
+    const uniqueThemes1 = Array.from(themes1).filter(
+      (theme) => !themes2.has(theme)
+    );
+    const uniqueThemes2 = Array.from(themes2).filter(
+      (theme) => !themes1.has(theme)
+    );
 
     const themeSimilarity =
       sharedThemes.length / Math.max(themes1.size, themes2.size);
