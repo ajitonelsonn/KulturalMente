@@ -21,6 +21,7 @@ import {
   Target,
   BarChart3,
 } from "lucide-react";
+import Navigation from "@/components/Navigation";
 import Link from "next/link";
 
 export default function HomePage() {
@@ -74,6 +75,13 @@ export default function HomePage() {
           }}
           transition={{ type: "spring", stiffness: 200, damping: 15 }}
         />
+      </div>
+
+      {/* Header with Navigation */}
+      <div className="relative z-10 px-4 sm:px-6 lg:px-8 py-8">
+        <div className="max-w-7xl mx-auto">
+          <Navigation />
+        </div>
       </div>
 
       {/* Hero Section */}
@@ -159,14 +167,16 @@ export default function HomePage() {
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </motion.button>
               </Link>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="group bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-12 py-6 rounded-full font-bold text-xl hover:bg-white/20 transition-all duration-300 flex items-center"
-              >
-                <Play className="mr-3 w-6 h-6 group-hover:scale-110 transition-transform" />
-                Watch Demo
-              </motion.button>
+              <Link href="/demo">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="group bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-12 py-6 rounded-full font-bold text-xl hover:bg-white/20 transition-all duration-300 flex items-center"
+                >
+                  <Play className="mr-3 w-6 h-6 group-hover:scale-110 transition-transform" />
+                  Watch Demo
+                </motion.button>
+              </Link>
             </motion.div>
 
             {/* Cultural Icons Animation */}
