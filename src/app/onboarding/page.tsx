@@ -49,7 +49,7 @@ const categories: PreferenceCategory[] = [
     name: "Music",
     icon: Music,
     description: "Artists, genres, or songs that move your soul",
-    placeholder: "Search for artists, genres, or songs...",
+    placeholder: "Type to search for artists, genres, or songs...",
     examples: ["Central Cee", "Billie Eilish", "Pink Floyd", "Kendrick Lamar"],
     gradient: "from-purple-500 to-pink-500",
     motivationalText: "Let's explore the soundscape of your soul! 🎵",
@@ -64,7 +64,7 @@ const categories: PreferenceCategory[] = [
     name: "Movies & TV",
     icon: Film,
     description: "Films, shows, or directors that captivate you",
-    placeholder: "Search for movies, shows, or directors...",
+    placeholder: "Type to search for movies, shows, or directors...",
     examples: [
       "The Grand Budapest Hotel",
       "Parasite",
@@ -84,7 +84,7 @@ const categories: PreferenceCategory[] = [
     name: "Food & Dining",
     icon: Coffee,
     description: "Cuisines and dining experiences you crave",
-    placeholder: "Search for cuisines, dishes, or restaurants...",
+    placeholder: "Type to search for cuisines, dishes, or restaurants...",
     examples: ["Ethiopian cuisine", "Ramen", "Farm-to-table", "Street food"],
     gradient: "from-orange-500 to-red-500",
     motivationalText: "Let's discover your culinary adventures! 🍽️",
@@ -99,7 +99,7 @@ const categories: PreferenceCategory[] = [
     name: "Travel & Places",
     icon: MapPin,
     description: "Destinations and experiences that inspire you",
-    placeholder: "Search for destinations or travel experiences...",
+    placeholder: "Type to search for destinations or travel experiences...",
     examples: [
       "Tokyo",
       "Backpacking Europe",
@@ -119,7 +119,7 @@ const categories: PreferenceCategory[] = [
     name: "Books & Literature",
     icon: Book,
     description: "Authors, genres, or stories that resonate",
-    placeholder: "Search for authors, books, or genres...",
+    placeholder: "Type to search for authors, books, or genres...",
     examples: ["Haruki Murakami", "Science fiction", "Poetry", "Non-fiction"],
     gradient: "from-indigo-500 to-purple-500",
     motivationalText: "Let's explore your literary landscape! 📚",
@@ -175,6 +175,9 @@ export default function OnboardingPage() {
   const [currentInsight, setCurrentInsight] = useState(0);
   const [completedSteps, setCompletedSteps] = useState<number[]>([]);
   const [isClearing, setIsClearing] = useState(true);
+  const [searchTimeout, setSearchTimeout] = useState<NodeJS.Timeout | null>(
+    null
+  );
 
   const currentCategory = categories[currentStep];
   const totalPreferences = Object.values(preferences).flat().length;
@@ -216,12 +219,35 @@ export default function OnboardingPage() {
     }
   }, [isClearing]);
 
-  // Reset search when input changes
+  // Auto-search when input changes (with debouncing)
   useEffect(() => {
+    // Clear existing timeout
+    if (searchTimeout) {
+      clearTimeout(searchTimeout);
+    }
+
     if (currentInput.length === 0) {
       setSearchResults([]);
       setHasSearched(false);
+      setIsSearching(false);
+      return;
     }
+
+    if (currentInput.length >= 2) {
+      // Set new timeout for auto-search
+      const timeout = setTimeout(() => {
+        searchPreferences(currentInput);
+      }, 500); // 500ms debounce
+
+      setSearchTimeout(timeout);
+    }
+
+    // Cleanup timeout on unmount or dependency change
+    return () => {
+      if (searchTimeout) {
+        clearTimeout(searchTimeout);
+      }
+    };
   }, [currentInput]);
 
   // Mark step as completed when user adds preferences
@@ -252,7 +278,7 @@ export default function OnboardingPage() {
 
     try {
       console.log(
-        `🔍 Searching for: "${query}" in category: ${currentCategory.id}`
+        `🔍 Auto-searching for: "${query}" in category: ${currentCategory.id}`
       );
 
       let results: QlooEntity[] = [];
@@ -295,27 +321,19 @@ export default function OnboardingPage() {
 
       setSearchResults(results);
       console.log(
-        `✅ Final search results: ${results.length} items for "${query}"`
+        `✅ Auto-search results: ${results.length} items for "${query}"`
       );
     } catch (error) {
-      console.error("Search error:", error);
+      console.error("Auto-search error:", error);
       setSearchResults([]);
     } finally {
       setIsSearching(false);
     }
   };
 
-  const handleSearch = () => {
-    searchPreferences(currentInput);
-  };
-
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      if (currentInput.trim() && searchResults.length === 0 && !isSearching) {
-        handleSearch();
-      } else if (currentInput.trim() && searchResults.length === 0) {
-        addPreference(currentInput.trim());
-      }
+    if (e.key === "Enter" && currentInput.trim()) {
+      addPreference(currentInput.trim());
     }
   };
 
@@ -689,7 +707,7 @@ export default function OnboardingPage() {
               </motion.p>
             </div>
 
-            {/* Enhanced Search Input */}
+            {/* Enhanced Search Input - Auto Search */}
             <div className="mb-10">
               <motion.div
                 initial={{ y: 20, opacity: 0 }}
@@ -717,21 +735,6 @@ export default function OnboardingPage() {
                     )}
                   </div>
 
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={handleSearch}
-                    disabled={!currentInput.trim() || isSearching}
-                    className="px-8 py-6 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-2xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg transition-all duration-300 flex items-center gap-2"
-                  >
-                    {isSearching ? (
-                      <Loader2 className="w-6 h-6 animate-spin" />
-                    ) : (
-                      <Search className="w-6 h-6" />
-                    )}
-                    Search
-                  </motion.button>
-
                   {currentInput.trim() && (
                     <motion.button
                       initial={{ scale: 0 }}
@@ -746,6 +749,18 @@ export default function OnboardingPage() {
                     </motion.button>
                   )}
                 </div>
+
+                {/* Auto-search indicator */}
+                {currentInput.length > 0 && currentInput.length < 2 && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="mt-2 text-white/60 text-sm flex items-center"
+                  >
+                    <Search className="w-4 h-4 mr-2" />
+                    Type at least 2 characters to search automatically...
+                  </motion.div>
+                )}
 
                 {/* Tips Toggle */}
                 <div className="mt-4 flex items-center justify-between">
@@ -806,7 +821,7 @@ export default function OnboardingPage() {
                 </AnimatePresence>
               </motion.div>
 
-              {/* Enhanced Search Results */}
+              {/* Enhanced Auto-Search Results */}
               <AnimatePresence>
                 {searchResults.length > 0 && (
                   <motion.div
@@ -818,7 +833,7 @@ export default function OnboardingPage() {
                     <div className="flex items-center justify-between mb-4">
                       <h4 className="text-white font-semibold flex items-center">
                         <TrendingUp className="w-5 h-5 mr-2 text-green-400" />
-                        Search Results ({searchResults.length})
+                        Auto-Search Results ({searchResults.length})
                       </h4>
                       <span className="text-white/60 text-sm">
                         Click to add to your profile
@@ -870,26 +885,29 @@ export default function OnboardingPage() {
                   </motion.div>
                 )}
 
-                {hasSearched && searchResults.length === 0 && !isSearching && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="mt-6 bg-white/5 rounded-2xl p-6 border border-white/10 text-center"
-                  >
-                    <div className="text-white/60 mb-4">
-                      No results found for "{currentInput}"
-                    </div>
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => addPreference(currentInput.trim())}
-                      className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center gap-2 mx-auto"
+                {hasSearched &&
+                  searchResults.length === 0 &&
+                  !isSearching &&
+                  currentInput.length >= 2 && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="mt-6 bg-white/5 rounded-2xl p-6 border border-white/10 text-center"
                     >
-                      <Plus className="w-5 h-5" />
-                      Add "{currentInput}" anyway
-                    </motion.button>
-                  </motion.div>
-                )}
+                      <div className="text-white/60 mb-4">
+                        No results found for "{currentInput}"
+                      </div>
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => addPreference(currentInput.trim())}
+                        className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center gap-2 mx-auto"
+                      >
+                        <Plus className="w-5 h-5" />
+                        Add "{currentInput}" anyway
+                      </motion.button>
+                    </motion.div>
+                  )}
               </AnimatePresence>
 
               {/* Popular Choices */}
@@ -1017,7 +1035,8 @@ export default function OnboardingPage() {
                     profile
                   </p>
                   <p className="text-sm text-white/40">
-                    Search above or choose from popular options
+                    Type above for auto-suggestions or choose from popular
+                    options
                   </p>
                 </motion.div>
               )}
