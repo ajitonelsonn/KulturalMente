@@ -62,6 +62,9 @@ import {
 import CulturalWowFactor from "@/components/CulturalWowFactor";
 import html2canvas from "html2canvas";
 
+import PDFExportModal from "@/components/PDFExportModal";
+import { usePDFExport } from "@/hooks/use-pdf-export";
+
 interface StoredResults {
   preferences: Record<string, string[]>;
   culturalProfile: CulturalProfile;
@@ -176,6 +179,9 @@ export default function ResultsPage() {
   const [generatedImageUrl, setGeneratedImageUrl] = useState<string | null>(
     null
   );
+  // pdf
+  const [showPDFModal, setShowPDFModal] = useState(false);
+
   const shareableRef = useRef<HTMLDivElement>(null);
   const storyRef = useRef<HTMLDivElement>(null);
 
@@ -1324,6 +1330,7 @@ export default function ResultsPage() {
             ))}
           </div>
 
+          {/* Enhanced Action Buttons with PDF Export */}
           <div className="flex items-center space-x-4">
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -1333,6 +1340,17 @@ export default function ResultsPage() {
             >
               <Plus className="w-4 h-4 mr-2" />
               New
+            </motion.button>
+
+            {/* New PDF Export Button */}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setShowPDFModal(true)}
+              className="flex items-center px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white hover:shadow-lg transition-all rounded-xl border border-green-400/20 font-medium"
+            >
+              <Download className="w-5 h-5 mr-2" />
+              Export PDF
             </motion.button>
 
             <motion.button
@@ -3576,6 +3594,18 @@ export default function ResultsPage() {
                             Refine Your Profile
                           </motion.button>
                         </Link>
+
+                        {/* New PDF Export Button in CTA */}
+                        <motion.button
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          onClick={() => setShowPDFModal(true)}
+                          className="w-full sm:w-auto bg-gradient-to-r from-green-600 to-emerald-600 text-white px-10 py-5 rounded-xl font-bold text-lg hover:shadow-lg transition-all flex items-center justify-center"
+                        >
+                          <Download className="w-6 h-6 mr-3" />
+                          Download PDF Report
+                        </motion.button>
+
                         <motion.button
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
@@ -3937,8 +3967,46 @@ export default function ResultsPage() {
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ delay: 1, type: "spring", stiffness: 200 }}
-        className="fixed bottom-8 right-8 z-20"
+        className="fixed bottom-8 right-8 z-20 flex flex-col items-end space-y-4"
       >
+        {/* Quick PDF Export Button */}
+        <motion.div
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 1.5 }}
+          className="relative"
+        >
+          <motion.button
+            whileHover={{
+              scale: 1.1,
+              boxShadow: "0 10px 30px rgba(34, 197, 94, 0.4)",
+            }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => setShowPDFModal(true)}
+            className="bg-gradient-to-r from-green-600 to-emerald-600 text-white p-4 rounded-full shadow-lg relative overflow-hidden group"
+          >
+            <Download className="w-6 h-6 transition-transform group-hover:scale-110" />
+
+            {/* Ripple Effect */}
+            <motion.div
+              className="absolute inset-0 bg-white/20 rounded-full"
+              animate={{ scale: [0, 2.5], opacity: [0.5, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
+          </motion.button>
+
+          {/* PDF Tooltip */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, x: 20 }}
+            whileHover={{ opacity: 1, scale: 1, x: 0 }}
+            className="absolute right-full top-1/2 transform -translate-y-1/2 mr-4 bg-black/90 backdrop-blur-sm text-white px-4 py-2 rounded-lg text-sm whitespace-nowrap border border-white/20 pointer-events-none"
+          >
+            Export PDF Report
+            <div className="absolute left-full top-1/2 transform -translate-y-1/2 border-4 border-transparent border-l-black/90" />
+          </motion.div>
+        </motion.div>
+
+        {/* Main Action Button */}
         <div className="relative">
           {/* Notification Badge with Dynamic Counter */}
           <motion.div
@@ -4129,6 +4197,16 @@ export default function ResultsPage() {
           </div>
 
           <div className="flex items-center space-x-3">
+            {/* Mobile PDF Export Button */}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setShowPDFModal(true)}
+              className="p-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl shadow-lg"
+            >
+              <Download className="w-5 h-5" />
+            </motion.button>
+
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -4337,6 +4415,15 @@ export default function ResultsPage() {
             }}
           />
         ))}
+        {/* PDF Export Modal */}
+        <PDFExportModal
+          isOpen={showPDFModal}
+          onClose={() => setShowPDFModal(false)}
+          preferences={preferences}
+          culturalProfile={culturalProfile}
+          narrative={narrative}
+          discoveries={discoveries}
+        />
       </div>
     </div>
   );
