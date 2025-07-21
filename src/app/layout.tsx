@@ -1,3 +1,4 @@
+// src/app/layout.tsx
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -15,7 +16,18 @@ export const metadata: Metadata = {
     "cultural DNA",
     "recommendations",
   ],
-  authors: [{ name: "KulturalMente Team" }],
+  authors: [{ name: "Ajito Nelson Lucio da Costa" }],
+  openGraph: {
+    title: "KulturalMente - Cultural Intelligence Platform",
+    description: "Discover your unique cultural DNA through AI analysis",
+    images: ["/logo.png"],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "KulturalMente - Your Cultural DNA",
+    description: "AI-powered cultural intelligence platform",
+  },
 };
 
 export const viewport: Viewport = {
@@ -30,7 +42,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head>
+        {/* Add any additional head elements here */}
+        <link rel="icon" href="/favicon.ico" />
+      </head>
+      <body className={inter.className}>
+        {/* No navigation here - each page includes its own navigation */}
+        {children}
+      </body>
     </html>
   );
 }
