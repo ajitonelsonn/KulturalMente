@@ -3591,7 +3591,7 @@ export default function ResultsPage() {
                             className="w-full sm:w-auto bg-white text-purple-600 px-10 py-5 rounded-xl font-bold text-lg hover:bg-blue-50 transition-all flex items-center justify-center shadow-xl"
                           >
                             <Plus className="w-6 h-6 mr-3" />
-                            Refine Your Profile
+                            Refine
                           </motion.button>
                         </Link>
 
@@ -3603,7 +3603,7 @@ export default function ResultsPage() {
                           className="w-full sm:w-auto bg-gradient-to-r from-green-600 to-emerald-600 text-white px-10 py-5 rounded-xl font-bold text-lg hover:shadow-lg transition-all flex items-center justify-center"
                         >
                           <Download className="w-6 h-6 mr-3" />
-                          Download PDF Report
+                          PDF
                         </motion.button>
 
                         <motion.button
@@ -3618,9 +3618,7 @@ export default function ResultsPage() {
                           ) : (
                             <Share2 className="w-6 h-6 mr-3" />
                           )}
-                          {isGeneratingImage
-                            ? "Creating..."
-                            : "Share Your Evolution"}
+                          {isGeneratingImage ? "Creating..." : "Share"}
                         </motion.button>
                       </div>
 
@@ -4304,94 +4302,6 @@ export default function ResultsPage() {
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Cultural Insights Sidebar for Desktop */}
-      <motion.div
-        initial={{ opacity: 0, x: 100 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 2 }}
-        className="fixed right-8 top-1/2 transform -translate-y-1/2 bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 max-w-xs hidden 2xl:block z-10"
-      >
-        <h4 className="text-white font-bold mb-4 flex items-center">
-          <Zap className="w-5 h-5 mr-2 text-yellow-400" />
-          Live Cultural DNA
-        </h4>
-
-        <div className="space-y-4">
-          {/* Real-time stats */}
-          <div className="grid grid-cols-2 gap-3">
-            <div className="text-center p-3 bg-white/5 rounded-lg border border-white/10">
-              <div className="text-xl font-bold text-white">
-                {Object.values(preferences).flat().length}
-              </div>
-              <div className="text-xs text-white/60">Preferences</div>
-            </div>
-            <div className="text-center p-3 bg-white/5 rounded-lg border border-white/10">
-              <div className="text-xl font-bold text-white">
-                {culturalProfile.connections.length}
-              </div>
-              <div className="text-xs text-white/60">Connections</div>
-            </div>
-          </div>
-
-          {/* Cultural themes preview */}
-          <div>
-            <h5 className="text-white text-sm font-medium mb-2">
-              Active Themes
-            </h5>
-            <div className="space-y-2">
-              {culturalProfile.themes.slice(0, 3).map((theme, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 2.5 + index * 0.1 }}
-                  className="text-xs text-blue-100 bg-white/5 px-3 py-2 rounded-lg border border-white/10 hover:bg-white/10 transition-all cursor-pointer"
-                >
-                  {theme}
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Quick actions */}
-          <div className="space-y-2">
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => setActiveTab("discoveries")}
-              className="w-full text-left p-3 bg-green-500/10 text-green-300 rounded-lg border border-green-400/20 hover:bg-green-500/20 transition-all text-sm"
-            >
-              <div className="flex items-center">
-                <Compass className="w-4 h-4 mr-2" />
-                <span>View {discoveries.length} Discoveries</span>
-              </div>
-            </motion.button>
-
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => setActiveTab("evolution")}
-              className="w-full text-left p-3 bg-purple-500/10 text-purple-300 rounded-lg border border-purple-400/20 hover:bg-purple-500/20 transition-all text-sm"
-            >
-              <div className="flex items-center">
-                <TrendingUp className="w-4 h-4 mr-2" />
-                <span>Cultural Evolution</span>
-              </div>
-            </motion.button>
-          </div>
-
-          {/* Analysis timestamp */}
-          <div className="pt-4 border-t border-white/20">
-            <div className="flex items-center text-xs text-white/60">
-              <Clock className="w-3 h-3 mr-2" />
-              <span>
-                Analysis completed {Math.round(analysisStats.analysisTime)}s ago
-              </span>
-            </div>
-          </div>
-        </div>
-      </motion.div>
 
       {/* Background Enhancement Particles */}
       <div className="fixed inset-0 pointer-events-none z-0">
