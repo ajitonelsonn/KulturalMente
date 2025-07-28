@@ -1,0 +1,33 @@
+# Qloo Recommendations API Format 
+
+# Test 1: Single entity with REQUIRED 'type' parameter
+GET https://hackathon.api.qloo.com/recommendations?entity_ids=C445C761-CB38-4FEE-B085-D35F444A04DF&type=urn:entity:destination&take=5
+Headers: 
+X-API-Key: 
+accept: application/json
+OK
+
+# Test 2: Multiple entities (separate entity_ids parameters)
+GET https://hackathon.api.qloo.com/recommendations?entity_ids=C445C761-CB38-4FEE-B085-D35F444A04DF&entity_ids=B1554C0C-511B-4947-B758-83BAB11A3082&type=urn:entity:destination&take=5
+OK
+Headers:
+X-API-Key: 
+accept: application/json
+
+# Test 3: Try with movie type
+GET https://hackathon.api.qloo.com/recommendations?entity_ids=C445C761-CB38-4FEE-B085-D35F444A04DF&type=urn:entity:movie&take=5
+Headers:
+X-API-Key: 
+accept: application/json
+
+# Test 4: Try with artist type 
+GET https://hackathon.api.qloo.com/recommendations?entity_ids=C445C761-CB38-4FEE-B085-D35F444A04DF&type=urn:entity:artist&take=5
+Headers:
+X-API-Key: 
+accept: application/json
+
+# Test 5: Try with place type
+GET https://hackathon.api.qloo.com/recommendations?entity_ids=C445C761-CB38-4FEE-B085-D35F444A04DF&type=urn:entity:place&take=5
+Headers:
+X-API-Key: 
+accept: application/json
