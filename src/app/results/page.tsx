@@ -2090,12 +2090,12 @@ export default function ResultsPage() {
                             />
                             <Tooltip
                               contentStyle={{
-                                backgroundColor: "rgba(0, 0, 0, 0.95)",
+                                backgroundColor: "rgba(0, 0, 0, 0.1)",
                                 border: "1px solid rgba(255, 255, 255, 0.2)",
                                 borderRadius: "12px",
                                 backdropFilter: "blur(10px)",
                                 color: "white",
-                                maxWidth: "300px",
+                                maxWidth: "360px",
                               }}
                               formatter={(value, name, props) => [
                                 `${value}% connection strength`,
@@ -2110,16 +2110,7 @@ export default function ResultsPage() {
                                     <div className="font-bold mb-2 text-lg">
                                       {label}
                                     </div>
-                                    {connection?.explanation && (
-                                      <div className="text-sm text-gray-300 leading-relaxed">
-                                        {connection.explanation.length > 150
-                                          ? connection.explanation.substring(
-                                              0,
-                                              150
-                                            ) + "..."
-                                          : connection.explanation}
-                                      </div>
-                                    )}
+
                                     <div className="text-xs text-gray-400 mt-2">
                                       {connection?.entities?.length || 0} shared
                                       cultural elements
