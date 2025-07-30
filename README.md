@@ -99,7 +99,7 @@ yarn install
    Create a `.env.local` file in the root directory:
 
 ```env
-QLOO_API_URL=https://api.qloo.com
+QLOO_API_URL=https://api.qloo.com or https://hackathon.api.qloo.com
 QLOO_API_KEY=your_qloo_api_key_here
 OPENAI_API_KEY=your_openai_api_key_here
 NEXT_PUBLIC_APP_NAME=KulturalMente
