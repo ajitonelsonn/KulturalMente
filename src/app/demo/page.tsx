@@ -239,7 +239,7 @@ export default function DemoPage() {
               <iframe
                 width="100%"
                 height="100%"
-                src="https://www.youtube.com/embed/39GKuMeEGV0?si=dR71MFAS0sdD3VIV&autoplay=0&mute=1"
+                src="https://www.youtube.com/embed/feLsoE9Q_Gk?si=EIgubr40bJ9iDNxg&autoplay=0&mute=1"
                 title="KulturalMente Demo - Cultural DNA Analysis"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
