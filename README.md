@@ -6,6 +6,10 @@
 
 ![KulturalMente Banner](/public/KulturalMenteBanner.png)
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-kulturalmente.space-brightgreen)](https://kulturalmente.space)
+[![Demo Video](https://img.shields.io/badge/Demo%20Video-3%20min%20walkthrough-red)](https://youtu.be/feLsoE9Q_Gk)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 ## 🌟 What Makes KulturalMente Special?
 
 Ever wondered why you love certain music, movies, or travel destinations? KulturalMente doesn't just track what you like—it discovers **WHY** you like it and reveals the deeper cultural story these preferences tell about who you are.
@@ -46,14 +50,26 @@ Ever wondered why you love certain music, movies, or travel destinations? Kultur
 - **Real-time PDF Generation:** Professional cultural intelligence documents
 - **Social Sharing:** Beautiful cultural DNA cards for social media
 
-## 🛠️ Complete Technology Stack
+## 🛠️ Technology Stack
 
-### **🎯 Required Hackathon Technologies**
+### **Core Technologies**
 
-- **Qloo Taste AI™ API** - Cultural intelligence, cross-domain affinities, privacy-first data
-- **OpenAI GPT-4o** - Large Language Model for cultural narrative generation
+- **Next.js 14** - React framework with App Router and SSR
+- **TypeScript** - Type-safe development
+- **Tailwind CSS** - Utility-first CSS framework
+- **Framer Motion** - Advanced animations and interactions
 
-## 🚀 Getting Started
+### **AI & Data Services**
+
+- **Qloo Taste AI™ API** - Cultural intelligence and cross-domain insights
+- **OpenAI GPT-4o** - Advanced language model for narrative generation
+
+### **Additional Libraries**
+
+- **Lucide React** - Beautiful icon system
+- **Custom Hooks** - Reusable logic for preferences, search, and PDF export
+
+## 🚀 Quick Start
 
 ### Prerequisites
 
@@ -102,6 +118,8 @@ yarn dev
 
 ## 🏗️ Architecture Overview
 
+![Architecture Overview](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEixEOYIBXCQYvQjH_guWGI-olzfg9pG_o4gmCT-7fmEqPrRT8YisqEeDaoaJTPYSaY5zCtZM8hhbtkg_FDHht1V_FpfwB_CaXX-V0uUz_2oqlhPwm5BlBIV275ItrNpMfRMGRhztOKR6zvbey4oEMGWbEU4aXfo6hVF2fmVO69eXtL07xRiRkeDI7LZA2I/s16000/kulturalmente_system_overview.png)
+
 ### Core Services
 
 #### Qloo Integration (`qloo-service.ts`)
@@ -138,6 +156,8 @@ POST /api/openai/discoveries          # Create personalized recommendations
 
 ## 🎯 How It Works
 
+![KulturalMente Journey](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgi0rKkFR9eiTOvaUzLTZni27lQMLPEr4t7dzdjPK58a1-_Ou8iOP1MzeJmAI2O89klXbIEDMtLD2kijz8uA6x2OwMUHM8EQovSsgMaNjtekoIctxvKj9EIGauttKSJVBwVDbEfsuVjb6zqMqofYMI7k3Hkz3AnG6boNP7QeI8peOg3EvWJtzj8z8civw8/s952/journey_kulturalmente.png)
+
 ### 1. Cultural Preference Collection
 
 Users input their favorite items across five domains:
@@ -168,69 +188,9 @@ Users input their favorite items across five domains:
 - **Professional Reports:** PDF generation in multiple formats
 - **Social Sharing:** Viral-ready cultural DNA cards
 
-## 🏆 Hackathon Submission Compliance
+### 📊 Data Flow Architecture
 
-### **✅ Project Requirements Met**
-
-- **✓ LLM + Qloo Integration** - Clear synergy between OpenAI GPT-4o and Qloo's cultural intelligence
-- **✓ Working Application** - Fully functional web app running consistently
-- **✓ Beyond Individual Capabilities** - Achieves results neither technology could accomplish alone
-- **✓ New Application** - Created entirely during hackathon submission period
-- **✓ Proper Authorization** - All third-party tools used under appropriate licenses
-
-### **📋 Submission Requirements**
-
-- **✓ Functional Demo App** - [Live URL: kulturalmente.space](https://kulturalmente.space)
-- **✓ Public Repository** - Complete source code with documentation
-- **✓ Text Description** - Comprehensive feature and functionality explanation
-- **✓ Demo Video** - Under 3 minutes showing application in action
-- **✓ Third-Party Credits** - All external libraries and tools properly credited
-
-### **🎯 Judging Criteria Excellence**
-
-#### **🧠 Intelligent & Thoughtful Use of LLMs**
-
-- **Cultural Narrative Generation** - Creates meaningful stories from scattered preferences
-- **Cross-Domain Analysis** - LLM capabilities enhanced by Qloo's cultural intelligence
-- **Predictive Insights** - 24-month cultural evolution forecasting
-- **Personalized Recommendations** - Context-aware suggestions based on cultural DNA
-
-#### **🔗 Integration with Qloo's API**
-
-- **Cross-Domain Affinities** - Showcases Music ↔ Movies 95% strength connections
-- **Privacy-First Data** - No personal information required, only cultural preferences
-- **Real-Time Intelligence** - Live cultural pattern recognition across 5 domains
-- **Entity Mapping** - Professional integration with Qloo's cultural database
-
-#### **⚙️ Technical Implementation & Execution**
-
-- **Industry-Quality Code** - Professional Next.js TypeScript implementation
-- **Smooth Operation** - Robust error handling and seamless user experience
-- **Effective Integration** - Sophisticated Qloo + OpenAI API coordination
-- **Frontend Excellence** - Polished UI with advanced animations and interactions
-
-#### **💡 Originality & Creativity**
-
-- **Cultural DNA Concept** - Novel approach to preference analysis and identity discovery
-- **3D Visualization** - Interactive cultural constellation exploration
-- **Narrative Intelligence** - Transforms data into compelling personal stories
-- **Boundary Pushing** - Goes far beyond traditional recommendation systems
-
-#### **🌍 Potential for Real-World Application**
-
-- **Personal Development** - Helps users understand their cultural identity
-- **Travel & Discovery** - Guides cultural exploration and experience planning
-- **Content Curation** - Enables deeper, more meaningful recommendation systems
-- **Social Connection** - Facilitates cultural identity sharing and comparison
-- **Scalable Solution** - Architecture supports millions of cultural profiles
-
-## 🌍 Real-World Applications
-
-- **Personal Development:** Understand your cultural identity and growth areas
-- **Travel Planning:** Discover destinations aligned with your cultural preferences
-- **Content Discovery:** Find books, movies, music that truly resonate
-- **Social Connection:** Share and compare cultural DNA with friends
-- **Cultural Education:** Learn about global cultural patterns and connections
+![Data Flow Architecture](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyfM2lT2fnIMbf6CyqxTMwp-snroKA_I2yuB41lQ9WwkPUBlrsBTm4mUTbrAZUVPcHtCWo6PhQkEgX1vw-EGT51mnyWiitLjJ62fJegZ9aPCEZGrRfOvelH_-lLwoYO366s0qv_YqpbE1dowqUOokqUrfobsxih36XkYRBb2-bDtTGa-mkKsuSo7v3nOI/s2334/Screenshot%202025-07-28%20at%2010.00.28.png)
 
 ## 📁 Project Structure
 
@@ -262,6 +222,14 @@ kulturalmente/
 └── README.md
 ```
 
+## 🌍 Real-World Applications
+
+- **Personal Development:** Understand your cultural identity and growth areas
+- **Travel Planning:** Discover destinations aligned with your cultural preferences
+- **Content Discovery:** Find books, movies, music that truly resonate
+- **Social Connection:** Share and compare cultural DNA with friends
+- **Cultural Education:** Learn about global cultural patterns and connections
+
 ## 🚀 Deployment
 
 ### Production Build
@@ -277,38 +245,6 @@ Ensure all environment variables are properly configured:
 
 - `QLOO_API_URL` and `QLOO_API_KEY` for Qloo integration
 - `OPENAI_API_KEY` for AI narrative generation
-
-## 📜 Third-Party Credits & Compliance
-
-_As required by Qloo LLM Hackathon rules: "External libraries, tools, or datasets are permitted, but must be credited."_
-
-### **🔑 Core APIs & Services**
-
-- **Qloo Taste AI™ API** - Cultural intelligence platform (Licensed for hackathon use)
-- **OpenAI API** - GPT-4o language model (Commercial license)
-
-### **⚖️ License Compliance**
-
-- All external libraries are used in accordance with their respective license terms
-- No proprietary or copyrighted content is reproduced without permission
-- All third-party integrations comply with hackathon requirements
-- Source code properly attributes all external dependencies
-
-### **🔒 Data & Privacy**
-
-- **Privacy-First Approach** - No personal identifying data collected
-- **Qloo's Privacy Standards** - Compliant with Qloo's privacy-first data approach
-- **User Consent** - Cultural preferences voluntarily provided
-- **Data Processing** - All analysis done with user-provided cultural preferences only
-
-### **📋 Hackathon Compliance**
-
-- ✅ **New Application** - Created entirely during hackathon period
-- ✅ **Required Integration** - Qloo API + LLM (GPT-4o) combination
-- ✅ **Authorization** - All APIs used under proper licensing terms
-- ✅ **Third-Party Credits** - All external tools properly credited
-- ✅ **Functionality** - Application runs consistently as demonstrated
-- ✅ **Platform** - Web application accessible via provided URL
 
 ## 📄 License
 
@@ -328,7 +264,7 @@ Built with ❤️ for the Qloo LLM Hackathon 2025
 
 ---
 
-**Experience KulturalMente:** [Live Demo](https://kulturalmente.space)  
-**Watch Demo Video:** [3-Minute Walkthrough](https://youtu.be/feLsoE9Q_Gk)
+**🌐 Experience KulturalMente:** [Live Demo](https://kulturalmente.space)  
+**📹 Watch Demo Video:** [3-Minute Walkthrough](https://youtu.be/feLsoE9Q_Gk)
 
 _"Your Mind. Your Culture. Your Story."_ 🧠✨
