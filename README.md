@@ -7,7 +7,7 @@
 ![KulturalMente Banner](/public/KulturalMenteBanner.png)
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-kulturalmente.space-brightgreen)](https://kulturalmente.space)
-[![Demo Video](https://img.shields.io/badge/Demo%20Video-3%20min%20walkthrough-red)](https://youtu.be/5u_wxkESqV4?si=X4ImXtgiW5NnuDLN)
+[![Demo Video](https://img.shields.io/badge/Demo%20Video-3%20min%20walkthrough-red)](https://youtu.be/7UboHNm8FZU?si=xkbnBb3JVwL2Y-rv)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ## 🌟 What Makes KulturalMente Special?
@@ -265,6 +265,6 @@ Built with ❤️ for the Qloo LLM Hackathon 2025 : [Link My Submission Project]
 ---
 
 **🌐 Experience KulturalMente:** [Live Demo](https://kulturalmente.space)  
-**📹 Watch Demo Video:** [3-Minute Walkthrough](https://youtu.be/5u_wxkESqV4?si=X4ImXtgiW5NnuDLN)
+**📹 Watch Demo Video:** [3-Minute Walkthrough](https://youtu.be/7UboHNm8FZU?si=xkbnBb3JVwL2Y-rv)
 
 _"Your Mind. Your Culture. Your Story."_ 🧠✨
