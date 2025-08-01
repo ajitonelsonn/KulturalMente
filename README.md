@@ -260,7 +260,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👨‍💻 Author
 
 **Ajito Nelson Lucio da Costa**  
-Built with ❤️ for the Qloo LLM Hackathon 2025
+Built with ❤️ for the Qloo LLM Hackathon 2025 : [Link My Submission Project](https://devpost.com/software/kulturalmente)
 
 ---
 
