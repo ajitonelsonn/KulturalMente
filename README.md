@@ -260,11 +260,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👨‍💻 Author
 
 **Ajito Nelson Lucio da Costa**  
-Built with ❤️ for the Qloo LLM Hackathon 2025 : [Link My Submission Project](https://devpost.com/software/kulturalmente)
 
 ---
 
 **🌐 Experience KulturalMente:** [Live Demo](https://kulturalmente.space)  
-**📹 Watch Demo Video:** [3-Minute Walkthrough](https://youtu.be/7UboHNm8FZU?si=xkbnBb3JVwL2Y-rv)
 
 _"Your Mind. Your Culture. Your Story."_ 🧠✨
