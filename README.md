@@ -232,7 +232,82 @@ kulturalmente/
 
 ## 🚀 Deployment
 
-### Production Build
+### Deploy to Vercel (Recommended)
+
+KulturalMente is optimized for deployment on Vercel. Follow these steps for a seamless deployment:
+
+#### Option 1: Deploy via Vercel Dashboard
+
+1. **Push your code to GitHub**
+   ```bash
+   git add .
+   git commit -m "Prepare for Vercel deployment"
+   git push origin main
+   ```
+
+2. **Import to Vercel**
+   - Visit [vercel.com](https://vercel.com) and sign in
+   - Click "Add New Project"
+   - Import your GitHub repository
+   - Vercel will automatically detect Next.js configuration
+
+3. **Configure Environment Variables**
+
+   In the Vercel project settings, add the following environment variables:
+
+   | Variable | Value | Description |
+   |----------|-------|-------------|
+   | `QLOO_API_URL` | `https://api.qloo.com` or `https://hackathon.api.qloo.com` | Qloo API endpoint |
+   | `QLOO_API_KEY` | `your_qloo_api_key_here` | Your Qloo API credentials |
+   | `OPENAI_API_KEY` | `your_openai_api_key_here` | OpenAI API key for narrative generation |
+   | `NEXT_PUBLIC_APP_NAME` | `KulturalMente` | Application name |
+
+4. **Deploy**
+   - Click "Deploy"
+   - Vercel will build and deploy your application
+   - Your app will be live at `https://your-project.vercel.app`
+
+#### Option 2: Deploy via Vercel CLI
+
+1. **Install Vercel CLI**
+   ```bash
+   npm i -g vercel
+   ```
+
+2. **Login to Vercel**
+   ```bash
+   vercel login
+   ```
+
+3. **Deploy**
+   ```bash
+   vercel
+   ```
+
+   Follow the prompts to configure your deployment.
+
+4. **Set Environment Variables**
+   ```bash
+   vercel env add QLOO_API_URL
+   vercel env add QLOO_API_KEY
+   vercel env add OPENAI_API_KEY
+   vercel env add NEXT_PUBLIC_APP_NAME
+   ```
+
+5. **Deploy to Production**
+   ```bash
+   vercel --prod
+   ```
+
+#### Option 3: One-Click Deploy
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/ajitonelsonn/kulturalmente&env=QLOO_API_URL,QLOO_API_KEY,OPENAI_API_KEY,NEXT_PUBLIC_APP_NAME&envDescription=API%20keys%20required%20for%20KulturalMente&envLink=https://github.com/ajitonelsonn/kulturalmente%23-quick-start)
+
+Click the button above to deploy your own instance of KulturalMente.
+
+### Production Build (Manual Deployment)
+
+If you prefer to deploy to other platforms:
 
 ```bash
 npm run build
@@ -243,8 +318,30 @@ npm start
 
 Ensure all environment variables are properly configured:
 
-- `QLOO_API_URL` and `QLOO_API_KEY` for Qloo integration
-- `OPENAI_API_KEY` for AI narrative generation
+- `QLOO_API_URL` - Qloo API endpoint (required)
+- `QLOO_API_KEY` - Your Qloo API key (required)
+- `OPENAI_API_KEY` - OpenAI API key for narrative generation (required)
+- `NEXT_PUBLIC_APP_NAME` - Application name (optional, defaults to KulturalMente)
+
+### Vercel Configuration
+
+The project includes optimal settings for Vercel deployment:
+
+- **Framework Preset:** Next.js (auto-detected)
+- **Build Command:** `npm run build` (default)
+- **Output Directory:** `.next` (default)
+- **Install Command:** `npm install` (default)
+- **Node.js Version:** 18.x or higher
+
+### Post-Deployment Checklist
+
+- ✅ Verify all environment variables are set correctly
+- ✅ Test the Qloo API integration (search functionality)
+- ✅ Test the OpenAI integration (cultural narrative generation)
+- ✅ Check PDF export functionality
+- ✅ Verify 3D visualization renders properly
+- ✅ Test on mobile devices for responsive design
+- ✅ Configure custom domain (optional)
 
 ## 📄 License
 
