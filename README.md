@@ -2,10 +2,6 @@
 
 **"Your Mind. Your Culture. Your Story."**
 
-> An AI-powered cultural intelligence platform that discovers your unique cultural identity by analyzing your preferences across music, movies, food, travel, and literature. Built for the Qloo LLM Hackathon 2025.
-
-![KulturalMente Banner](/public/KulturalMenteBanner.png)
-
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-kulturalmente.space-brightgreen)](https://kulturalmente.space)
 [![Demo Video](https://img.shields.io/badge/Demo%20Video-3%20min%20walkthrough-red)](https://youtu.be/7UboHNm8FZU?si=xkbnBb3JVwL2Y-rv)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
